@@ -1,0 +1,46 @@
+{
+  "name": "tabby-k8s-exec",
+  "version": "1.0.0",
+  "description": "Kubernetes pod exec plugin for Tabby — no kubectl binary required at runtime",
+  "author": "Ji-Ho, Lee <search5@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "tabby-plugin",
+    "tabby",
+    "kubernetes",
+    "kubectl",
+    "exec",
+    "k8s"
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "scripts/install-plugin.js",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "node scripts/resolve-tabby-paths.js",
+    "build": "webpack --progress --color",
+    "prewatch": "node scripts/resolve-tabby-paths.js",
+    "watch": "webpack --progress --color --watch",
+    "install-plugin": "node scripts/install-plugin.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@angular/common": "^15.0.0",
+    "@angular/compiler": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@kubernetes/client-node": "1.4.0",
+    "@types/node": "^18.0.0",
+    "node-loader": "^2.1.0",
+    "rxjs": "^7.8.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^4.9.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "peerDependencies": {
+    "tabby-core": "*"
+  }
+}

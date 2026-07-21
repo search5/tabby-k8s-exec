@@ -1,0 +1,23 @@
+{
+    "Kubeconfig Path": "Kubeconfig 경로",
+    "Context": "컨텍스트",
+    "Namespace": "네임스페이스",
+    "Pod": "파드",
+    "Container": "컨테이너",
+    "Command": "명령어",
+    "Try /bin/bash, fall back to /bin/sh if unavailable": "/bin/bash를 우선 시도하고, 없으면 /bin/sh로 대체",
+    "Select a context": "컨텍스트를 선택하세요",
+    "Select a namespace": "네임스페이스를 선택하세요",
+    "Select a pod": "파드를 선택하세요",
+    "Select a container": "컨테이너를 선택하세요",
+    "Refresh": "새로고침",
+    "Loading...": "불러오는 중...",
+    "e.g. /bin/sh, /bin/bash, or \"sh -c ...\"": "예: /bin/sh, /bin/bash, 또는 \"sh -c ...\"",
+    "Leave empty to use the pod's only container, or the first one if it has several.": "비워두면 파드에 컨테이너가 하나뿐일 때는 그 컨테이너를, 여러 개일 때는 첫 번째 컨테이너를 사용합니다.",
+    "Unable to read kubeconfig. Check the path.": "kubeconfig를 읽을 수 없습니다. 경로를 확인하세요.",
+    "Unable to list namespaces. Check your kubeconfig and cluster connectivity.": "네임스페이스 목록을 가져올 수 없습니다. kubeconfig와 클러스터 연결 상태를 확인하세요.",
+    "No namespaces found.": "네임스페이스가 없습니다.",
+    "Unable to list pods.": "파드 목록을 가져올 수 없습니다.",
+    "No pods found in this namespace.": "이 네임스페이스에 파드가 없습니다.",
+    "Select a namespace first.": "먼저 네임스페이스를 선택하세요."
+}

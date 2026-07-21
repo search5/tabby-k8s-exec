@@ -1,0 +1,23 @@
+{
+    "Kubeconfig Path": "Kubeconfig Path",
+    "Context": "Context",
+    "Namespace": "Namespace",
+    "Pod": "Pod",
+    "Container": "Container",
+    "Command": "Command",
+    "Try /bin/bash, fall back to /bin/sh if unavailable": "Try /bin/bash, fall back to /bin/sh if unavailable",
+    "Select a context": "Select a context",
+    "Select a namespace": "Select a namespace",
+    "Select a pod": "Select a pod",
+    "Select a container": "Select a container",
+    "Refresh": "Refresh",
+    "Loading...": "Loading...",
+    "e.g. /bin/sh, /bin/bash, or \"sh -c ...\"": "e.g. /bin/sh, /bin/bash, or \"sh -c ...\"",
+    "Leave empty to use the pod's only container, or the first one if it has several.": "Leave empty to use the pod's only container, or the first one if it has several.",
+    "Unable to read kubeconfig. Check the path.": "Unable to read kubeconfig. Check the path.",
+    "Unable to list namespaces. Check your kubeconfig and cluster connectivity.": "Unable to list namespaces. Check your kubeconfig and cluster connectivity.",
+    "No namespaces found.": "No namespaces found.",
+    "Unable to list pods.": "Unable to list pods.",
+    "No pods found in this namespace.": "No pods found in this namespace.",
+    "Select a namespace first.": "Select a namespace first."
+}
