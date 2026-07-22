@@ -1,6 +1,20 @@
+import * as http from 'http'
+import * as https from 'https'
 import * as os from 'os'
 import * as path from 'path'
 import type { Context, KubeConfig } from '@kubernetes/client-node'
+
+// @kubernetes/client-node's requests fall back to Node's global http/https agent when no
+// explicit agent is configured, which pools and reuses keep-alive sockets across calls even
+// when a "fresh" client/KubeConfig object is built each time. If the cluster's API server ever
+// closes an idle pooled socket server-side (or a network blip half-closes one), a later request
+// reusing that socket can sit waiting for a very long time before the OS finally surfaces the
+// failure. Disabling keep-alive forces every request to open a fresh connection, trading a few
+// extra ms of TCP/TLS handshake for immunity to stale-socket reuse.
+// The Agent instance does have a mutable `keepAlive` property at runtime (set from constructor
+// options), it's just not part of @types/node's public Agent type declaration.
+;(http.globalAgent as any).keepAlive = false
+;(https.globalAgent as any).keepAlive = false
 
 /**
  * `@kubernetes/client-node` ships as an ESM-only package. It must always be
@@ -98,4 +112,12 @@ export async function listPods (api: any, namespace: string): Promise<PodSummary
             ...(pod.spec?.containers ?? []),
         ].map((c: any) => c.name),
     })).filter((pod: PodSummary) => !!pod.name)
+}
+
+// The exec subresource's WebSocket upgrade fails with an opaque "Unexpected server response:
+// 500" when the target container isn't actually running (already exited, crash-looping, etc.)
+// — checking the pod's phase up front lets callers surface a message that actually explains why.
+export async function getPodPhase (api: any, namespace: string, podName: string): Promise<string | null> {
+    const pod: any = await withTimeout<any>(api.readNamespacedPod({ name: podName, namespace }), API_TIMEOUT_MS, 'Timed out reading pod status.')
+    return pod.status?.phase ?? null
 }

@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, NgZone } from '@angular/core'
 import { ProfileSettingsComponent, LocaleService } from 'tabby-core'
 import { KubeExecProfile } from '../api'
-import { PodSummary } from '../kubeConfigLoader'
-import { listContextsViaWorker, listNamespacesViaWorker, listPodsViaWorker } from '../k8sWorkerClient'
+import { createCoreV1Api, listContexts, listNamespaces, listPods, PodSummary } from '../kubeConfigLoader'
 
 // To add a language, create src/locale/<code>.json and register it here.
 // @ngx-translate/core is not exposed to plugins by Tabby, so LocaleService (which
@@ -115,7 +114,7 @@ export class KubeExecProfileSettingsComponent implements ProfileSettingsComponen
     loadingPods = false
     podsError = ''
 
-    constructor (private localeService: LocaleService) { }
+    constructor (private localeService: LocaleService, private ngZone: NgZone) { }
 
     t (key: string): string {
         const lang = (this.localeService.getLocale() || 'en').slice(0, 2)
@@ -187,14 +186,23 @@ export class KubeExecProfileSettingsComponent implements ProfileSettingsComponen
     async loadContexts (): Promise<void> {
         this.loadingContexts = true
         this.contextsError = ''
+        let contexts: string[] = []
+        let error = ''
         try {
-            this.contexts = await listContextsViaWorker(this.profile.options.kubeconfigPath)
+            contexts = (await listContexts(this.profile.options.kubeconfigPath)).map(c => c.name)
         } catch (e: any) {
-            this.contexts = []
-            this.contextsError = this.t('Unable to read kubeconfig. Check the path.') + (e?.message ? ` (${e.message})` : '')
-        } finally {
-            this.loadingContexts = false
+            error = this.t('Unable to read kubeconfig. Check the path.') + (e?.message ? ` (${e.message})` : '')
         }
+        // The K8s client's requests resolve via Node's http/https internals, which zone.js's
+        // browser bundle never patches — so the `await` above resumes outside Angular's zone
+        // and none of the assignments below would otherwise trigger change detection.
+        // Re-entering the zone explicitly is what makes the UI actually update instead of
+        // appearing stuck on "Loading..." until some unrelated event nudges CD.
+        this.ngZone.run(() => {
+            this.contexts = contexts
+            this.contextsError = error
+            this.loadingContexts = false
+        })
     }
 
     onContextChange (): void {
@@ -208,22 +216,23 @@ export class KubeExecProfileSettingsComponent implements ProfileSettingsComponen
     async loadNamespaces (forceFresh = false): Promise<void> {
         this.loadingNamespaces = true
         this.namespacesError = ''
+        let namespaces: string[] = []
+        let error = ''
         try {
-            // Runs in a separate forked process (see k8sWorkerClient.ts), not in this
-            // Angular/zone.js renderer — that's what makes latency actually consistent
-            // (in-process calls, even outside Angular's zone, still occasionally saw
-            // multi-hundred-ms jitter from renderer-process contention that a plain `curl`
-            // against the same API server never showed).
-            this.namespaces = await listNamespacesViaWorker(this.profile.options.kubeconfigPath, this.profile.options.context, forceFresh)
-            if (!this.namespaces.length) {
-                this.namespacesError = this.t('No namespaces found.')
+            const api = await createCoreV1Api(this.profile.options.kubeconfigPath, this.profile.options.context, forceFresh)
+            namespaces = await listNamespaces(api)
+            if (!namespaces.length) {
+                error = this.t('No namespaces found.')
             }
         } catch (e: any) {
-            this.namespaces = []
-            this.namespacesError = this.t('Unable to list namespaces. Check your kubeconfig and cluster connectivity.') + (e?.message ? ` (${e.message})` : '')
-        } finally {
-            this.loadingNamespaces = false
+            error = this.t('Unable to list namespaces. Check your kubeconfig and cluster connectivity.') + (e?.message ? ` (${e.message})` : '')
         }
+        // See loadContexts() for why this needs an explicit zone re-entry.
+        this.ngZone.run(() => {
+            this.namespaces = namespaces
+            this.namespacesError = error
+            this.loadingNamespaces = false
+        })
     }
 
     onNamespaceChange (): void {
@@ -239,18 +248,24 @@ export class KubeExecProfileSettingsComponent implements ProfileSettingsComponen
         }
         this.loadingPods = true
         this.podsError = ''
+        let pods: PodSummary[] = []
+        let error = ''
         try {
-            this.pods = await listPodsViaWorker(this.profile.options.kubeconfigPath, this.profile.options.context, this.profile.options.namespace, forceFresh)
-            if (!this.pods.length) {
-                this.podsError = this.t('No pods found in this namespace.')
+            const api = await createCoreV1Api(this.profile.options.kubeconfigPath, this.profile.options.context, forceFresh)
+            pods = await listPods(api, this.profile.options.namespace)
+            if (!pods.length) {
+                error = this.t('No pods found in this namespace.')
             }
-            this.onPodChange()
         } catch (e: any) {
-            this.pods = []
-            this.podsError = this.t('Unable to list pods.') + (e?.message ? ` (${e.message})` : '')
-        } finally {
-            this.loadingPods = false
+            error = this.t('Unable to list pods.') + (e?.message ? ` (${e.message})` : '')
         }
+        // See loadContexts() for why this needs an explicit zone re-entry.
+        this.ngZone.run(() => {
+            this.pods = pods
+            this.podsError = error
+            this.loadingPods = false
+            this.onPodChange()
+        })
     }
 
     onPodChange (): void {

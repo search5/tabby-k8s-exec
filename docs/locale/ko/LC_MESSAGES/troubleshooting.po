@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../troubleshooting.rst:2 d97286b595fe45f9ba7512009f25e19c
+msgid "Troubleshooting & FAQ"
+msgstr "문제 해결 & FAQ"
+
+#: ../../troubleshooting.rst:5 1c826555c20c4784bc17e96b673990a5
+msgid "\"Pod is not running\" error on connect"
+msgstr "접속 시 \"Pod is not running\" 오류"
+
+#: ../../troubleshooting.rst:7 e6174bc45c6a44ba84c2cea199a0431c
+msgid ""
+"**Symptom:** connecting fails immediately with a message like ``Pod \"my-"
+"pod\" is not running (phase: Completed) — it may have already exited or "
+"failed.``"
+msgstr ""
+"**증상:** ``Pod \"my-pod\" is not running (phase: Completed) — it may "
+"have already exited or failed.``\\ 와 같은 메시지와 함께 접속이 즉시 실패합니다."
+
+#: ../../troubleshooting.rst:11 ccbbbda545a14bfd880ca5a13496de13
+msgid ""
+"**Cause:** the plugin checks the target pod's phase before opening the "
+"exec session. A pod that has already exited, failed, or hasn't been "
+"scheduled yet cannot be exec'd into — the same restriction ``kubectl "
+"exec`` has."
+msgstr ""
+"**원인:** 플러그인은 exec 세션을 열기 전에 대상 파드의 상태(phase)를 확인합니다. 이미 종료됐거나, 실패했거나, 아직"
+" 스케줄되지 않은 파드에는 exec로 접속할 수 없습니다 — ``kubectl exec``\\ 도 동일한 제약을 갖습니다."
+
+#: ../../troubleshooting.rst:16 503ce3dc998b4a3e85cc16578cd737b2
+msgid "**Fix:** confirm the pod is actually running:"
+msgstr "**해결:** 파드가 실제로 실행 중인지 확인하세요:"
+
+#: ../../troubleshooting.rst:22 4a78de4682b84895b3d9bdfeadd30ab0
+msgid ""
+"If it shows ``Completed`` or ``Error``, the pod's container has already "
+"exited (for example, a pod running a one-shot command rather than a long-"
+"lived process); if it shows ``Pending``, it hasn't been scheduled yet. "
+"Either way, the plugin can't attach to it in that state — pick a pod "
+"that's actually ``Running``, or recreate/restart it first."
+msgstr ""
+"``Completed``\\ 나 ``Error``\\ 로 표시된다면 파드의 컨테이너가 이미 종료된 상태입니다(예: 지속 실행되는 "
+"프로세스가 아니라 한 번만 실행되는 명령을 돌리는 파드). ``Pending``\\ 이라면 아직 스케줄되지 않은 상태입니다. "
+"어느 쪽이든 그 상태에서는 플러그인이 접속할 수 없으니, 실제로 ``Running``\\ 상태인 파드를 선택하거나 먼저 다시 "
+"만들거나 재시작하세요."
+
+#: ../../troubleshooting.rst:29 fb84f4831b1e4e46b77d239b665b36e7
+msgid "Connection fails with an authentication error"
+msgstr "인증 오류로 접속이 실패함"
+
+#: ../../troubleshooting.rst:31 e4db2630396745e4a64a877d30497a4d
+msgid ""
+"**Symptom:** the connection fails with an authentication-related error, "
+"even though the same context worked before."
+msgstr "**증상:** 전에는 잘 되던 같은 컨텍스트인데도 인증 관련 오류로 접속이 실패합니다."
+
+#: ../../troubleshooting.rst:34 3d06b354f0044edcbbc31d38183c8f94
+msgid ""
+"**Cause:** if your kubeconfig context uses an ``exec``-based auth plugin "
+"(EKS, GKE, ``kubelogin``, ...), the plugin runs that binary to obtain a "
+"token — the same one ``kubectl`` itself would run. If your underlying CLI"
+" session (e.g. an ``aws`` SSO/login session) has expired, that command "
+"fails, and so does the connection."
+msgstr ""
+"**원인:** kubeconfig 컨텍스트가 ``exec`` 기반 인증 플러그인(EKS, GKE, ``kubelogin`` 등)을 "
+"사용한다면, 플러그인은 ``kubectl``\\ 자체가 실행할 바이너리와 동일한 것을 실행해서 토큰을 받아옵니다. 기반이 되는 "
+"CLI 세션(예: ``aws`` SSO/로그인 세션)이 만료되어 있으면 이 명령이 실패하고 접속도 실패합니다."
+
+#: ../../troubleshooting.rst:40 81b1f7394a8c4ddfbe22909d70182772
+msgid ""
+"**Fix:** re-authenticate with your cluster's identity provider (for "
+"example, re-run ``aws login`` / re-authenticate your AWS SSO session), "
+"then retry the connection. See :doc:`prerequisites` for details on how "
+"``exec``-based auth is handled."
+msgstr ""
+"**해결:** 클러스터의 인증 제공자에 다시 로그인한 다음(예: ``aws login``\\ 을 다시 실행하거나 AWS SSO "
+"세션을 재인증), 접속을 다시 시도하세요. ``exec`` 기반 인증이 어떻게 처리되는지는 :doc:`prerequisites`\\ 를"
+" 참고하세요."
+
+#: ../../troubleshooting.rst:46 6be858808ea347748db1ecc9b3ea344a
+msgid "Confirming the plugin actually loaded"
+msgstr "플러그인이 실제로 로드됐는지 확인하기"
+
+#: ../../troubleshooting.rst:48 9e0dbdd860834b13915d31e2f93ae4c3
+msgid ""
+"**Symptom:** the \"Kubernetes Exec\" tab type doesn't appear, or "
+"connections behave unexpectedly, and you're not sure whether the plugin "
+"is even loaded."
+msgstr "**증상:** \"Kubernetes Exec\" 탭 종류가 보이지 않거나 접속이 예상과 다르게 동작해서, 플러그인이 로드되긴 한 건지 확실하지 않습니다."
+
+#: ../../troubleshooting.rst:51 5836ae962e184ee283dc8aa4668e770e
+msgid ""
+"**Fix:** open **View → Toggle Developer Tools** in Tabby and check the "
+"console for:"
+msgstr "**해결:** Tabby에서 **보기(View) → 개발자 도구 켜기/끄기(Toggle Developer Tools)**\\ 를 열어 콘솔에서 다음을 확인하세요:"
+
+#: ../../troubleshooting.rst:58 34834b92be0c410aad4b2e7fafdf5e56
+msgid ""
+"If this line is missing, the plugin failed to load — check that it was "
+"installed into the correct plugin directory for your OS (see "
+":doc:`installation`) and that Tabby was fully restarted afterwards."
+msgstr ""
+"이 줄이 없다면 플러그인이 로드되지 못한 것입니다 — 운영체제에 맞는 플러그인 디렉터리에 설치됐는지(:doc:`installation`"
+" 참고), 그리고 그 후 Tabby를 완전히 재시작했는지 확인하세요."
+
+#: ../../troubleshooting.rst:63 3149521125b949a4837c519e72317936
+msgid "The terminal disconnects after a few minutes idle"
+msgstr "몇 분간 유휴 상태이면 터미널 연결이 끊김"
+
+#: ../../troubleshooting.rst:65 10819c2e7d2e472e87b91731ffbbdd47
+msgid ""
+"**Symptom:** a session that's been left idle for a while (roughly 5 "
+"minutes or more) disconnects on its own."
+msgstr "**증상:** 한동안(대략 5분 이상) 아무 조작 없이 두면 세션이 저절로 끊깁니다."
+
+#: ../../troubleshooting.rst:68 90f56369786a4828ab548525d6d46edc
+msgid ""
+"**Cause:** this is a known limitation of the underlying Kubernetes exec "
+"protocol / client library, not something specific to this plugin — some "
+"proxies and load balancers in front of the API server close idle exec "
+"connections after a timeout, and there is currently no keepalive "
+"implemented around it."
+msgstr ""
+"**원인:** 이 플러그인만의 문제가 아니라 Kubernetes exec 프로토콜/클라이언트 라이브러리 자체의 알려진 제약입니다 — "
+"API 서버 앞단의 일부 프록시나 로드밸런서가 일정 시간이 지나면 유휴 상태인 exec 연결을 닫아버리는데, 현재는 이를 막는 "
+"keepalive가 구현되어 있지 않습니다."
+
+#: ../../troubleshooting.rst:74 1482ff1a826f4897bbe00ead36ef80c5
+msgid "**Fix:** reconnect via Tabby's reconnect hotkey or by reopening the tab."
+msgstr "**해결:** Tabby의 재연결 단축키를 사용하거나 탭을 다시 열어서 재연결하세요."
+
+#: ../../troubleshooting.rst:77 faf5557c1d124089b95a463b5bcc54b8
+msgid "``/bin/bash`` session ends immediately"
+msgstr "``/bin/bash`` 세션이 바로 종료됨"
+
+#: ../../troubleshooting.rst:79 c682e574e66244adb6dcd79adfd25eb9
+msgid ""
+"**Symptom:** connecting with Command set to ``/bin/bash`` ends the "
+"session right away, before you've typed anything."
+msgstr "**증상:** 명령어를 ``/bin/bash``\\ 로 설정하고 접속하면 아무것도 입력하기 전에 세션이 바로 종료됩니다."
+
+#: ../../troubleshooting.rst:82 f9f64a0780ab4e8682a92b39127c97fc
+msgid ""
+"**Cause:** the container image doesn't have ``bash`` installed (common "
+"with minimal images like ``busybox`` or ``alpine`` without extra "
+"packages)."
+msgstr "**원인:** 컨테이너 이미지에 ``bash``\\ 가 설치되어 있지 않습니다(``busybox``\\ 나 ``alpine``\\ 처럼 추가 패키지 없는 최소 이미지에서 흔함)."
+
+#: ../../troubleshooting.rst:86 182546aa1f3143efb3bec508e7c709aa
+msgid ""
+"**Fix:** if **Shell fallback** is enabled (the default), the plugin "
+"detects this and automatically retries with ``/bin/sh`` — you should see "
+"a status line announcing the fallback. If it's disabled, either enable it"
+" or set Command to ``/bin/sh`` directly."
+msgstr ""
+"**해결:** **셸 대체(fallback)**\\ 가 활성화되어 있다면(기본값) 플러그인이 이를 감지해서 자동으로 "
+"``/bin/sh``\\ 로 재시도합니다 — 대체가 일어났다는 상태 메시지가 표시될 겁니다. 비활성화되어 있다면 활성화하거나 "
+"명령어를 아예 ``/bin/sh``\\ 로 설정하세요."
+
+#: ../../troubleshooting.rst:92 cf52e623ad8c4fccb007c4202c341f67
+msgid "The plugin doesn't update after ``git pull``"
+msgstr "``git pull``\\ 후에도 플러그인이 업데이트되지 않음"
+
+#: ../../troubleshooting.rst:94 1553c35b714f4d0f959aa6fc2cc13ac7
+msgid ""
+"**Symptom:** you pulled the latest source changes, but Tabby still "
+"behaves like the old version."
+msgstr "**증상:** 최신 소스 변경 사항을 받았는데도 Tabby가 여전히 이전 버전처럼 동작합니다."
+
+#: ../../troubleshooting.rst:97 2ae66349e8cf4c979c04ada9ec0a7d6a
+msgid ""
+"**Cause:** installing from source requires an explicit rebuild and "
+"redeploy step — pulling new source alone does not update the files Tabby "
+"actually loads."
+msgstr "**원인:** 소스 설치는 명시적인 재빌드와 재배포 과정이 필요합니다 — 새 소스를 받는 것만으로는 Tabby가 실제로 불러오는 파일이 갱신되지 않습니다."
+
+#: ../../troubleshooting.rst:101 fb134505a1844ab2abf51002f5030288
+msgid "**Fix:** run the full update sequence from :doc:`installation`:"
+msgstr "**해결:** :doc:`installation`\\ 의 전체 업데이트 순서를 실행하세요:"
+
+#: ../../troubleshooting.rst:109 33b725e582774feda995cf068878e597
+msgid "Then fully restart Tabby (not just reload the window)."
+msgstr "그 다음 (창 새로고침이 아니라) Tabby를 완전히 재시작하세요."

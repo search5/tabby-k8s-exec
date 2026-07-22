@@ -25,51 +25,30 @@ const commonPlugins = [
     new webpack.IgnorePlugin({ resourceRegExp: /^(cpu-features|bufferutil|utf-8-validate)$/ }),
 ]
 
-module.exports = [
-    {
-        // Main plugin bundle — Angular NgModule, loaded in-process by Tabby's renderer.
-        name: 'main',
-        target: 'node',
-        entry: path.resolve(__dirname, 'src/index.ts'),
-        mode: 'production',
-        devtool: false,
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: 'index.js',
-            libraryTarget: 'umd',
-        },
-        resolve: { extensions: ['.ts', '.js'] },
-        module: commonModule,
-        plugins: commonPlugins,
-        externals: [
-            ({ request }, callback) => {
-                // tabby-* / @angular/* / rxjs / zone.js are provided by the host Tabby app at
-                // runtime and must NOT be bundled. @kubernetes/client-node (and everything it
-                // pulls in, including its ESM-only transitive deps) is intentionally NOT
-                // matched here — it must be bundled directly into dist/index.js.
-                if (/^(@angular\/|tabby-|rxjs|@ng-bootstrap|zone\.js)/.test(request)) {
-                    return callback(null, `commonjs ${request}`)
-                }
-                callback()
-            },
-        ],
+module.exports = {
+    // Plugin bundle — Angular NgModule, loaded in-process by Tabby's renderer.
+    target: 'node',
+    entry: path.resolve(__dirname, 'src/index.ts'),
+    mode: 'production',
+    devtool: false,
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+        libraryTarget: 'umd',
     },
-    {
-        // Worker process bundle — a standalone Node script run via child_process.fork()
-        // (see k8sWorkerClient.ts), completely outside the Angular/zone.js renderer. Has no
-        // Angular/tabby-* dependency at all (kubeConfigLoader.ts is plain Node), so it needs
-        // no externals — everything it touches gets bundled.
-        name: 'worker',
-        target: 'node',
-        entry: path.resolve(__dirname, 'src/k8sWorker.ts'),
-        mode: 'production',
-        devtool: false,
-        output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: 'k8sWorker.js',
+    resolve: { extensions: ['.ts', '.js'] },
+    module: commonModule,
+    plugins: commonPlugins,
+    externals: [
+        ({ request }, callback) => {
+            // tabby-* / @angular/* / rxjs / zone.js are provided by the host Tabby app at
+            // runtime and must NOT be bundled. @kubernetes/client-node (and everything it
+            // pulls in, including its ESM-only transitive deps) is intentionally NOT
+            // matched here — it must be bundled directly into dist/index.js.
+            if (/^(@angular\/|tabby-|rxjs|@ng-bootstrap|zone\.js)/.test(request)) {
+                return callback(null, `commonjs ${request}`)
+            }
+            callback()
         },
-        resolve: { extensions: ['.ts', '.js'] },
-        module: commonModule,
-        plugins: commonPlugins,
-    },
-]
+    ],
+}

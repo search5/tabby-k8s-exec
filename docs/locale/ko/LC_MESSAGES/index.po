@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-23 00:10+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../index.rst:16
+msgid "Contents"
+msgstr "목차"
+
+#: ../../index.rst:2 95f64846f6c94d42a0e239fe6a5ff764
+msgid "tabby-k8s-exec documentation"
+msgstr "tabby-k8s-exec 문서"
+
+#: ../../index.rst:4 b7b275d8f6064d0a8f122fbef1fa85c4
+msgid ""
+"A `Tabby <https://tabby.sh>`_ plugin that opens an interactive shell into"
+" a Kubernetes pod/container — like ``kubectl exec -it <pod> -- sh`` — "
+"without depending on the ``kubectl`` binary at runtime."
+msgstr ""
+"``kubectl exec -it <pod> -- sh``\\ 처럼 Kubernetes 파드/컨테이너에 대화형 셸을 여는 "
+"`Tabby <https://tabby.sh>`_ 플러그인입니다 — 런타임에 ``kubectl`` 바이너리에 의존하지 않습니다."
+
+#: ../../index.rst:8 f29250eceb344ca887cfddcb39dfc775
+msgid ""
+"The plugin talks directly to the cluster's exec WebSocket endpoint using "
+"the official ``@kubernetes/client-node`` SDK (`kubernetes-"
+"client/javascript <https://github.com/kubernetes-client/javascript>`_): "
+"it reads your kubeconfig, resolves credentials (including ``exec``-based "
+"auth plugins such as ``aws eks get-token`` or ``gke-gcloud-auth-"
+"plugin``), and drives the Kubernetes exec sub-protocol directly — no "
+"``kubectl`` process is ever spawned."
+msgstr ""
+"이 플러그인은 공식 ``@kubernetes/client-node`` SDK(`kubernetes-client/javascript "
+"<https://github.com/kubernetes-client/javascript>`_)를 사용해 클러스터의 exec "
+"WebSocket 엔드포인트에 직접 연결합니다: kubeconfig를 읽고, 자격 증명을 처리하며(``aws eks get-"
+"token``\\ 이나 ``gke-gcloud-auth-plugin`` 같은 ``exec`` 기반 인증 플러그인 포함), "
+"Kubernetes exec 서브 프로토콜을 직접 구동합니다 — ``kubectl`` 프로세스는 전혀 실행되지 않습니다."
+
+#: ../../index.rst:27 988b6a2e2b5c46d6975ab76f75086f54
+msgid "Indices and tables"
+msgstr "색인 및 표"
+
+#: ../../index.rst:29 0e538342681b48b2976fd35900bf5729
+msgid ":ref:`genindex`"
+msgstr ":ref:`genindex`"
+
+#: ../../index.rst:30 d8307bd1a7b648beb333446778c79d4b
+msgid ":ref:`search`"
+msgstr ":ref:`search`"
+

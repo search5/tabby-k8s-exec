@@ -1,0 +1,69 @@
+name: Deploy multilingual Sphinx docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - ".github/workflows/deploy-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install Sphinx as a uv tool
+        run: uv tool install sphinx --with sphinx-book-theme --with sphinx-intl --with-executables-from sphinx-intl
+
+      - name: Add uv tool bin dir to PATH
+        run: echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Compile Korean translations (.po -> .mo)
+        working-directory: docs
+        run: sphinx-intl build --locale-dir locale
+
+      - name: Build English HTML
+        working-directory: docs
+        run: sphinx-build -b html -d _build/doctrees/html-en -D language=en . _build/html/en
+
+      - name: Build Korean HTML
+        working-directory: docs
+        run: sphinx-build -b html -d _build/doctrees/html-ko -D language=ko . _build/html/ko
+
+      - name: Write root redirect to English docs
+        working-directory: docs
+        run: |
+          mkdir -p _build/html
+          printf '<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=en/"></head><body>Redirecting to <a href="en/">English docs</a>...</body></html>' > _build/html/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

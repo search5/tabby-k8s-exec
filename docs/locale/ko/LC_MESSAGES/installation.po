@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../installation.rst:2 8ac7baebc3d7459d84bf584b4033c035
+msgid "Installation"
+msgstr "설치"
+
+#: ../../installation.rst:4 5e71c0fcefe74ee480be317cbf7348ff
+msgid "Make sure you have completed the steps in :doc:`prerequisites` first."
+msgstr ":doc:`prerequisites`\\ 의 단계를 먼저 완료했는지 확인하세요."
+
+#: ../../installation.rst:8 d1d580214bfe42a9b755325462f11d78
+msgid ""
+"**tabby-k8s-exec** is not yet published to npm, so it does not appear in "
+"Tabby's built-in Plugin Manager search. For now, install it from source "
+"as described below."
+msgstr ""
+"**tabby-k8s-exec**\\ 는 아직 npm에 배포되지 않아서 Tabby 내장 플러그인 매니저 검색에 나타나지 않습니다. "
+"지금은 아래 설명대로 소스에서 직접 설치하세요."
+
+#: ../../installation.rst:13 1efb0f9d34f5474992bf65cf65915cd4
+msgid "Clone the Git repository and build from source"
+msgstr "Git 저장소를 복제하여 직접 설치"
+
+#: ../../installation.rst:15 e56301d218154fa89524baf4bcf2ce1f
+msgid "**Requirements:** `Node.js <https://nodejs.org/>`_ 18 or later."
+msgstr "**요구 사항:** `Node.js <https://nodejs.org/>`_ 18 이상."
+
+#: ../../installation.rst:25 a4d364e25d424cb7987bec8debff9bb2
+msgid ""
+"``npm run install-plugin`` detects your operating system and copies the "
+"built files to the correct Tabby plugin directory automatically:"
+msgstr "``npm run install-plugin``\\ 은 운영체제를 자동으로 감지해서 빌드된 파일을 올바른 Tabby 플러그인 디렉터리로 복사합니다:"
+
+#: ../../installation.rst:31 e11220c6f379429887223afe2c7bb22d
+msgid "OS"
+msgstr "OS"
+
+#: ../../installation.rst:32 823a7418bab5491b8beda67580476d07
+msgid "Plugin directory"
+msgstr "플러그인 디렉터리"
+
+#: ../../installation.rst:33 914aaf72cee34c7587c149bf79c40757
+msgid "macOS"
+msgstr "macOS"
+
+#: ../../installation.rst:34 a8e6f96b5b9a4aa582317813a1e0debd
+msgid ""
+"``~/Library/Application Support/tabby/plugins/node_modules/tabby-k8s-"
+"exec/``"
+msgstr ""
+"``~/Library/Application Support/tabby/plugins/node_modules/tabby-k8s-"
+"exec/``"
+
+#: ../../installation.rst:35 9f3d93a0d7ed41d2b8f2b4eec98415a6
+msgid "Linux"
+msgstr "Linux"
+
+#: ../../installation.rst:36 9a8540ed0b0645d6890c249dc69ab439
+msgid "``~/.config/tabby/plugins/node_modules/tabby-k8s-exec/``"
+msgstr "``~/.config/tabby/plugins/node_modules/tabby-k8s-exec/``"
+
+#: ../../installation.rst:37 293bc8db1eff4da5bd4c7a79f6156eba
+msgid "Windows"
+msgstr "Windows"
+
+#: ../../installation.rst:38 6cb7cd3a956d4812a2e168b3db52fe16
+msgid "``%APPDATA%\\tabby\\plugins\\node_modules\\tabby-k8s-exec\\``"
+msgstr "``%APPDATA%\\tabby\\plugins\\node_modules\\tabby-k8s-exec\\``"
+
+#: ../../installation.rst:40 43d5d62a8b37492085b7ac1923d76ed7
+msgid ""
+"Restart Tabby after installation. To confirm the plugin loaded, open "
+"**View → Toggle Developer Tools** and look for the following line in the "
+"console:"
+msgstr ""
+"설치 후 Tabby를 재시작하세요. 플러그인이 로드됐는지 확인하려면 **보기(View) → 개발자 도구 켜기/끄기(Toggle "
+"Developer Tools)**\\ 를 열어서 콘솔에 다음 줄이 있는지 확인하세요:"
+
+#: ../../installation.rst:48 ce891159f49a42aa882ac771ef856394
+msgid "If you don't see it, see :doc:`troubleshooting`."
+msgstr "이 줄이 보이지 않는다면 :doc:`troubleshooting`\\ 을 참고하세요."
+
+#: ../../installation.rst:51 528d37b864384d93ba135883fe73fc6a
+msgid "Updating"
+msgstr "업데이트"
+
+#: ../../installation.rst:53 92f2634a070b4078b17515db9170e2e2
+msgid "Keep the plugin up to date by pulling the latest changes and rebuilding:"
+msgstr "최신 변경 사항을 받아서 다시 빌드하면 플러그인을 최신 상태로 유지할 수 있습니다:"
+
+#: ../../installation.rst:61 df121d8d7f6848e7897f5681db9251ef
+msgid "Then restart Tabby."
+msgstr "그 다음 Tabby를 재시작하세요."
+
+#: ../../installation.rst:63 0d82ef2947b94c1c808f915e7c165efb
+msgid "Once installed, continue to :doc:`usage`."
+msgstr "설치가 끝났다면 :doc:`usage`\\ 로 이동하세요."

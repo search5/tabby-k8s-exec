@@ -5,7 +5,7 @@ import { LogService } from 'tabby-core'
 import { BaseSession } from 'tabby-terminal'
 import type { V1Status } from '@kubernetes/client-node'
 import { KubeExecProfile } from './api'
-import { createKubeConfig } from './kubeConfigLoader'
+import { createKubeConfig, getPodPhase } from './kubeConfigLoader'
 
 async function loadClientNode () {
     return import('@kubernetes/client-node')
@@ -86,9 +86,30 @@ export class KubeExecSession extends BaseSession {
 
         const k8s = await loadClientNode()
         const kc = await createKubeConfig(options.kubeconfigPath, options.context)
+
+        await this.assertPodIsRunning(kc.makeApiClient(k8s.CoreV1Api), options.namespace, options.podName)
+
         this.exec = new k8s.Exec(kc)
 
         await this.runExec(this.tokenize(options.command))
+    }
+
+    // The exec WebSocket upgrade fails with an opaque "Unexpected server response: 500" when
+    // the pod/container isn't actually running (already exited, crash-looping, not yet
+    // scheduled, ...). Checking the phase first lets this surface a message that actually
+    // explains why, instead of that raw transport error. Best-effort only — if the check
+    // itself fails (permissions, transient API hiccup), let the real exec attempt proceed and
+    // surface its own error rather than blocking the connection on this.
+    private async assertPodIsRunning (api: any, namespace: string, podName: string): Promise<void> {
+        let phase: string | null
+        try {
+            phase = await getPodPhase(api, namespace, podName)
+        } catch {
+            return
+        }
+        if (phase && phase !== 'Running') {
+            throw new Error(`Pod "${podName}" is not running (phase: ${phase}) — it may have already exited or failed. Check with "kubectl get pod".`)
+        }
     }
 
     private tokenize (command: string): string[] {

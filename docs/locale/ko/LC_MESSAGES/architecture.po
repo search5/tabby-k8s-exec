@@ -1,0 +1,173 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-23 00:12+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../architecture.rst:2 0c6ead20a48b48879eb5466dcfc4c847
+msgid "Architecture"
+msgstr "아키텍처"
+
+#: ../../architecture.rst:5 071772136b974ea2a3cd675755a3747e
+msgid "Source layout"
+msgstr "소스 구조"
+
+#: ../../architecture.rst:7 e142925b2b96456e80eaa52a396439b7
+msgid "All of the plugin's logic lives under ``src/``:"
+msgstr "플러그인의 모든 로직은 ``src/`` 아래에 있습니다:"
+
+#: ../../architecture.rst:13 4a275f5eff6c4ab1ad0db54df1b0a30a
+msgid "File"
+msgstr "파일"
+
+#: ../../architecture.rst:14 4063d306837349ce99baf871d35f876e
+msgid "Responsibility"
+msgstr "역할"
+
+#: ../../architecture.rst:15 9b9bcd292ee54541b6efeee268176c8e
+msgid "``api.ts``"
+msgstr "``api.ts``"
+
+#: ../../architecture.rst:16 fd459c42106e4f7c94e917e15c2ed76d
+msgid ""
+"Defines ``KubeExecProfileOptions``/``KubeExecProfile`` and "
+"``KubeExecProfileProvider``, which registers the \"Kubernetes Exec\" "
+"profile type with Tabby."
+msgstr ""
+"``KubeExecProfileOptions``/``KubeExecProfile``\\ 와 Tabby에 \"Kubernetes "
+"Exec\" 프로필 타입을 등록하는 ``KubeExecProfileProvider``\\ 를 정의합니다."
+
+#: ../../architecture.rst:19 194a45b9eec145beaad2ba830b8163be
+msgid "``kubeConfigLoader.ts``"
+msgstr "``kubeConfigLoader.ts``"
+
+#: ../../architecture.rst:20 b068433ab8974244b3accfb9d46e1e0a
+msgid ""
+"Plain Node helpers with no Angular/Tabby dependency: kubeconfig parsing, "
+"context listing, a cached ``CoreV1Api`` client per kubeconfig path + "
+"context, namespace/pod listing, and the pod-phase pre-check used before "
+"connecting."
+msgstr ""
+"Angular/Tabby에 의존하지 않는 순수 Node 헬퍼 함수들: kubeconfig 파싱, 컨텍스트 목록 조회, "
+"kubeconfig 경로 + 컨텍스트별로 캐시되는 ``CoreV1Api`` 클라이언트, 네임스페이스/파드 목록 조회, 접속 전에 "
+"수행하는 파드 상태(phase) 사전 확인."
+
+#: ../../architecture.rst:24 fd5f99e95a5c4199845f8d3a9307b535
+msgid "``kubeExec.session.ts``"
+msgstr "``kubeExec.session.ts``"
+
+#: ../../architecture.rst:25 224079f483e84b46ae81474f821a1ac2
+msgid ""
+"``KubeExecSession``, implementing Tabby's ``BaseSession`` on top of the "
+"Kubernetes exec WebSocket."
+msgstr ""
+"Kubernetes exec WebSocket 위에서 Tabby의 ``BaseSession``\\ 을 구현하는 "
+"``KubeExecSession``\\ 입니다."
+
+#: ../../architecture.rst:27 ce1511cbddb841ce812a1388e8da8e26
+msgid "``index.ts``"
+msgstr "``index.ts``"
+
+#: ../../architecture.rst:28 898cef5333a9490796bb3ad141acdee6
+msgid "The plugin's Angular ``NgModule`` entry point."
+msgstr "플러그인의 Angular ``NgModule`` 진입점입니다."
+
+#: ../../architecture.rst:29 bd939ab7e00a4333a2aea97a663b717a
+msgid "``components/kubeExecProfileSettings.component.ts``"
+msgstr "``components/kubeExecProfileSettings.component.ts``"
+
+#: ../../architecture.rst:30 0a62c8b7933246daad6743474f3ffca0
+msgid ""
+"The profile settings form: the cascading context/namespace/pod/ container"
+" pickers."
+msgstr "프로필 설정 화면입니다: 컨텍스트/네임스페이스/파드/컨테이너로 이어지는 연쇄 선택 UI입니다."
+
+#: ../../architecture.rst:32 8f2ef47303ca4bc9be452dfc8b6f68d2
+msgid "``components/kubeExecTab.component.ts``"
+msgstr "``components/kubeExecTab.component.ts``"
+
+#: ../../architecture.rst:33 38435cc8c1eb46a882ff937b7eaae731
+msgid ""
+"The terminal tab component, extending Tabby's "
+"``ConnectableTerminalTabComponent``."
+msgstr "Tabby의 ``ConnectableTerminalTabComponent``\\ 를 확장한 터미널 탭 컴포넌트입니다."
+
+#: ../../architecture.rst:37 d80734a219aa47ff9999aa6a019546ff
+msgid "Request flow"
+msgstr "요청 흐름"
+
+#: ../../architecture.rst:52 961f6728207541d2a3f640a7c9444ada
+msgid ""
+"No step in this chain shells out to ``kubectl``; credential resolution, "
+"the exec sub-protocol, and I/O framing are all handled by ``@kubernetes"
+"/client-node`` and driven directly from TypeScript."
+msgstr ""
+"이 흐름의 어떤 단계도 ``kubectl``\\ 을 실행하지 않습니다 — 자격 증명 처리, exec 서브 프로토콜, 입출력 프레이밍"
+" 모두 ``@kubernetes/client-node``\\ 가 처리하며 TypeScript에서 직접 구동합니다."
+
+#: ../../architecture.rst:57 5fe01d20fddb4250b18fd697e6908dee
+msgid "A note on Angular's change detection"
+msgstr "Angular 변경 감지에 대한 참고 사항"
+
+#: ../../architecture.rst:59 0c9d3450e73c4c5eb63ac5d2f988ff2d
+msgid ""
+"All Kubernetes API calls run directly in Tabby's renderer process. "
+"Responses to them (and to any ``exec``-based auth subprocess) arrive via "
+"plain Node.js ``http``/``child_process`` events, which zone.js's browser "
+"bundle does not patch — so without help, the settings dialog's "
+"namespace/pod pickers would correctly fetch data but not visibly update "
+"until some unrelated UI event happened to trigger a redraw. "
+"``kubeExecProfileSettings.component.ts`` works around this by explicitly "
+"re-entering Angular's zone (``NgZone.run(...)``) once each API call "
+"resolves."
+msgstr ""
+"모든 Kubernetes API 호출은 Tabby의 렌더러 프로세스에서 직접 실행됩니다. 이 호출들(그리고 ``exec`` 기반 인증"
+" 서브프로세스)의 응답은 일반 Node.js ``http``/``child_process`` 이벤트로 도착하는데, 이건 zone.js의"
+" 브라우저 번들이 패치하지 않는 API라서, 도움 없이는 설정 화면의 네임스페이스/파드 선택 UI가 데이터는 정상적으로 "
+"가져오면서도 무관한 다른 UI 이벤트가 우연히 다시 그리기를 유발할 때까지 화면에 반영되지 않습니다. "
+"``kubeExecProfileSettings.component.ts``\\ 는 각 API 호출이 끝날 때마다 Angular의 "
+"zone에 명시적으로 다시 진입(``NgZone.run(...)``)해서 이 문제를 해결합니다."
+
+#: ../../architecture.rst:70 8578c8a8ab564b5baf3d9ee15e9df991
+msgid "Bundled dependencies"
+msgstr "번들에 포함된 의존성"
+
+#: ../../architecture.rst:72 b41b3dc6791248e0ba4171e58e6a9ae2
+msgid ""
+"The plugin bundles ``@kubernetes/client-node`` (`kubernetes-"
+"client/javascript <https://github.com/kubernetes-client/javascript>`_), "
+"pinned to an exact version (not a ``^`` range) since its WebSocket/exec "
+"internals are not part of its stable public API surface. The package is "
+"ESM-only, so it is always loaded via a dynamic ``import()`` rather than a"
+" static import, avoiding an ``ERR_REQUIRE_ESM`` failure in this CommonJS-"
+"targeted plugin bundle."
+msgstr ""
+"이 플러그인은 ``@kubernetes/client-node``\\ (`kubernetes-client/javascript "
+"<https://github.com/kubernetes-client/javascript>`_)를 번들에 포함하며, "
+"WebSocket/exec 내부 구현이 안정적인 공개 API에 속하지 않기 때문에 ``^`` 범위가 아닌 정확한 버전으로 "
+"고정합니다. 이 패키지는 ESM 전용이라서 정적 import 대신 항상 동적 ``import()``\\ 로 불러오며, 이 "
+"CommonJS 대상 플러그인 번들에서 ``ERR_REQUIRE_ESM`` 오류가 나는 것을 방지합니다."
+
+#: ../../architecture.rst:80 4344d62d2ff24637b7e4f1aea4435931
+msgid ""
+"Beyond this one library, the plugin has **no runtime dependencies** other"
+" than what Tabby itself provides (Angular, Tabby's core APIs, etc.)."
+msgstr ""
+"이 라이브러리 하나를 제외하면, 플러그인은 Tabby 자체가 제공하는 것(Angular, Tabby 코어 API 등) 외에 "
+"**런타임 의존성이 전혀 없습니다**."
+

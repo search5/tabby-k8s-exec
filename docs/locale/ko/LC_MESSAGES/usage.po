@@ -1,0 +1,207 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../usage.rst:2 d2380b0eebda400e84e183d54d90ce2f
+msgid "Usage"
+msgstr "사용법"
+
+#: ../../usage.rst:5 936ec446326748db9aae58bae3f627c6
+msgid "Creating a new Kubernetes Exec connection"
+msgstr "새 Kubernetes Exec 연결 만들기"
+
+#: ../../usage.rst:7 643e07ac0b404715a232ca1794c354fb
+msgid "Open Tabby and choose **New tab → Kubernetes Exec**."
+msgstr "Tabby를 열고 **새 탭(New tab) → Kubernetes Exec**\\ 를 선택합니다."
+
+#: ../../usage.rst:8 45d4ffe9d9ba42d4812e96be76dc9ae0
+msgid "Fill in the profile settings:"
+msgstr "프로필 설정을 채웁니다:"
+
+#: ../../usage.rst:13 a301e9c212a54bea91a321f85c295ce5
+msgid "Field"
+msgstr "필드"
+
+#: ../../usage.rst:14 5e5869ee0d3f483f967a67792d7346e2
+msgid "Description"
+msgstr "설명"
+
+#: ../../usage.rst:15 852cc5a55f734deab472d9381a188989
+msgid "Kubeconfig Path"
+msgstr "Kubeconfig 경로"
+
+#: ../../usage.rst:16 a589917fa4ff4ef789a6836bbc09c1b0
+msgid "Path to the kubeconfig file. Defaults to ``~/.kube/config``."
+msgstr "kubeconfig 파일 경로. 기본값은 ``~/.kube/config``\\ 입니다."
+
+#: ../../usage.rst:17 18dfc51036204c1089357aa8102b2fd2
+msgid "Context"
+msgstr "컨텍스트"
+
+#: ../../usage.rst:18 1e4c93f664c5487da2855f64e39f56f9
+msgid ""
+"Kubeconfig context to use. Populated from the local kubeconfig file (no "
+"cluster connection needed for this one); leave unset to use the file's "
+"``current-context``."
+msgstr ""
+"사용할 kubeconfig 컨텍스트입니다. 로컬 kubeconfig 파일에서 채워지며(이 항목은 클러스터 연결이 필요 없습니다), "
+"비워두면 파일의 ``current-context``\\ 를 사용합니다."
+
+#: ../../usage.rst:21 ece26efba6654b03911727e443144282
+msgid "Namespace"
+msgstr "네임스페이스"
+
+#: ../../usage.rst:22 4593bf0a513f419bb2949d5d60bca34e
+msgid ""
+"Namespace containing the target pod. Click **Refresh** to list namespaces"
+" from the cluster using the selected context."
+msgstr "대상 파드가 속한 네임스페이스입니다. **새로고침**\\ 을 클릭하면 선택한 컨텍스트로 클러스터의 네임스페이스 목록을 가져옵니다."
+
+#: ../../usage.rst:24 81e003ca5b5b496d899afe66e47a8a2f
+msgid "Pod"
+msgstr "파드"
+
+#: ../../usage.rst:25 02807879de9a4d44b9bd861856626f1a
+msgid ""
+"Pod to exec into. Click **Refresh** to list pods in the selected "
+"namespace; each entry shows its current phase, e.g. ``my-pod (Running)``."
+msgstr ""
+"접속할 파드입니다. **새로고침**\\ 을 클릭하면 선택한 네임스페이스의 파드 목록을 가져오며, 각 항목은 ``my-pod "
+"(Running)``\\ 처럼 현재 상태(phase)를 함께 보여줍니다."
+
+#: ../../usage.rst:28 e585869d04dd4ff4a302788b8a2dee37
+msgid "Container"
+msgstr "컨테이너"
+
+#: ../../usage.rst:29 5a6b1d9a7a74427dbdddc1458b59a221
+msgid ""
+"Container within the pod. Auto-selected if the pod has exactly one "
+"container; otherwise pick one from the pod's actual "
+"``containers``/``initContainers``."
+msgstr ""
+"파드 안의 컨테이너입니다. 파드에 컨테이너가 하나뿐이면 자동으로 선택되고, 여러 개라면 파드의 실제 "
+"``containers``/``initContainers``\\ 목록에서 직접 선택합니다."
+
+#: ../../usage.rst:32 19b054998f514ff0a844f23c70b526fe
+msgid "Command"
+msgstr "명령어"
+
+#: ../../usage.rst:33 faf5811f03334d8b8abe8b4c7fc12184
+msgid "Shell or command to run on connect. Defaults to ``/bin/sh``."
+msgstr "접속 시 실행할 셸 또는 명령어입니다. 기본값은 ``/bin/sh``\\ 입니다."
+
+#: ../../usage.rst:34 3625efc7e8254f49ac08059f23b0a1aa
+msgid "Shell fallback"
+msgstr "셸 대체(fallback)"
+
+#: ../../usage.rst:35 893ff092e4974dd89ec3df2a71ca6ae5
+msgid ""
+"Only shown when Command is ``/bin/bash`` (or ``bash``). If enabled (the "
+"default), the plugin retries with ``/bin/sh`` automatically if bash isn't"
+" available in the container."
+msgstr ""
+"명령어가 ``/bin/bash``\\ (또는 ``bash``)일 때만 표시됩니다. 활성화되어 있으면(기본값) 컨테이너에 bash가"
+" 없을 때 자동으로 ``/bin/sh``\\ 로 재시도합니다."
+
+#: ../../usage.rst:41 c2af135bc8b24495b6e6ad7649b87bce
+msgid ""
+"Selecting a context does **not** automatically load its namespaces — "
+"click the **Refresh** button next to Namespace explicitly. This avoids "
+"firing off a cluster API call every time you're just browsing contexts."
+msgstr ""
+"컨텍스트를 선택해도 네임스페이스가 자동으로 불러와지지 **않습니다** — 네임스페이스 옆의 **새로고침** 버튼을 직접 눌러야 "
+"합니다. 이는 단순히 컨텍스트를 둘러보기만 할 때마다 클러스터 API를 호출하는 것을 방지하기 위함입니다."
+
+#: ../../usage.rst:45 854fcf74b8724f71b3d21fcf462603c5
+msgid "Save the profile and connect."
+msgstr "프로필을 저장하고 접속합니다."
+
+#: ../../usage.rst:49 f82c64b645694f3f9362a98f5f8ee0b5
+msgid ""
+"If the selected pod isn't actually running (already exited, crashed, "
+"still pending, ...), the plugin detects this before attempting to connect"
+" and shows a clear message naming the pod's current phase, instead of a "
+"raw transport error. See :doc:`troubleshooting`."
+msgstr ""
+"선택한 파드가 실제로 실행 중이 아니라면(이미 종료됐거나, 크래시됐거나, 아직 대기 중이거나 등) 플러그인이 접속을 시도하기 전에"
+" 이를 감지해서, 원시 전송 계층 에러 대신 파드의 현재 상태(phase)를 명시한 명확한 메시지를 보여줍니다. "
+":doc:`troubleshooting`\\ 을 참고하세요."
+
+#: ../../usage.rst:55 8346873885024e1b883b2bc1d9838bed
+msgid "What happens behind the scenes"
+msgstr "내부적으로 일어나는 일"
+
+#: ../../usage.rst:57 ffce8cb6330a4b12b81cc939f99309e7
+msgid ""
+"**Kubeconfig load** — the selected kubeconfig file and context are "
+"parsed, and credentials are resolved using the same logic ``kubectl`` "
+"uses (static token, client certificate, or an ``exec``-based auth "
+"plugin)."
+msgstr ""
+"**Kubeconfig 로드** — 선택한 kubeconfig 파일과 컨텍스트를 파싱하고, ``kubectl``\\ 과 동일한 방식(고정"
+" 토큰, 클라이언트 인증서, 또는 ``exec`` 기반 인증 플러그인)으로 자격 증명을 처리합니다."
+
+#: ../../usage.rst:61 7fa96d8028654909807b51985b72b8f1
+msgid ""
+"**Pod status check** — the target pod's phase is read once via the "
+"Kubernetes API before connecting."
+msgstr "**파드 상태 확인** — 접속하기 전에 Kubernetes API를 통해 대상 파드의 상태(phase)를 한 번 확인합니다."
+
+#: ../../usage.rst:63 de7eb0ead38647bca5c80875a1457bcd
+msgid ""
+"**Exec** — an interactive session is opened directly against the "
+"cluster's exec WebSocket endpoint (the ``pods/exec`` subresource), "
+"running the configured command with a TTY attached."
+msgstr ""
+"**Exec** — 클러스터의 exec WebSocket 엔드포인트(``pods/exec`` 서브리소스)에 직접 대화형 세션을 열어, "
+"TTY가 연결된 상태로 설정된 명령어를 실행합니다."
+
+#: ../../usage.rst:66 1466e501a4d848a68a4d748a6b0c975a
+msgid ""
+"**I/O** — terminal input/output, resizing, and teardown are all driven "
+"over that same WebSocket — no local ``kubectl`` process is involved at "
+"any point."
+msgstr ""
+"**입출력** — 터미널 입출력, 크기 조절, 종료 처리가 모두 같은 WebSocket을 통해 이뤄지며, 로컬 ``kubectl`` "
+"프로세스는 어떤 단계에서도 관여하지 않습니다."
+
+#: ../../usage.rst:70 2df8ae656d8c4ae29a8070a24aa52fa4
+msgid ""
+"See :doc:`architecture` for how these stages map onto the plugin's source"
+" files."
+msgstr "이 단계들이 플러그인의 소스 파일과 어떻게 대응되는지는 :doc:`architecture`\\ 를 참고하세요."
+
+#: ../../usage.rst:74 e21f4d2ec10c408180bc40d2e7c54706
+msgid "Development workflow"
+msgstr "개발 워크플로우"
+
+#: ../../usage.rst:76 aa8cd51f57f34c33ba0bb95ea4b2001c
+msgid ""
+"If you are working on the plugin itself (see :doc:`installation`), you "
+"can iterate with:"
+msgstr "플러그인 자체를 개발 중이라면(:doc:`installation` 참고), 다음과 같이 반복 작업할 수 있습니다:"
+
+#: ../../usage.rst:84 71494062f7714c1e899b6ee52147fb4d
+msgid ""
+"Open Tabby's developer console (**View → Toggle Developer Tools**) to see"
+" the plugin's log output while you work."
+msgstr ""
+"작업하는 동안 플러그인의 로그 출력을 보려면 Tabby의 개발자 콘솔(**보기(View) → 개발자 도구 켜기/끄기(Toggle "
+"Developer Tools)**)을 여세요."

@@ -1,0 +1,12 @@
+[
+  {
+    "name": "English",
+    "version": "en",
+    "url": "../en/"
+  },
+  {
+    "name": "한국어",
+    "version": "ko",
+    "url": "../ko/"
+  }
+]

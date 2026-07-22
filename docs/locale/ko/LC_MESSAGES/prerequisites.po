@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026, Ji-Ho Lee
+# This file is distributed under the same license as the tabby-k8s-exec
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tabby-k8s-exec 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"PO-Revision-Date: 2026-07-22 23:58+0900\n"
+"Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
+"Language: ko\n"
+"Language-Team: ko <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../prerequisites.rst:2 caa0b01a8e4645f6af314b3395ce825a
+msgid "Prerequisites"
+msgstr "사전 준비 사항"
+
+#: ../../prerequisites.rst:4 68c0e96f71df4dad8a13dcd5424bff9a
+msgid "Before using **tabby-k8s-exec**, make sure the following are in place."
+msgstr "**tabby-k8s-exec**\\ 를 사용하기 전에 다음 사항이 준비되어 있는지 확인하세요."
+
+#: ../../prerequisites.rst:7 85ad2852c065473bbb0ce7ca444b0891
+msgid "1. A working kubeconfig file"
+msgstr "1. 정상 동작하는 kubeconfig 파일"
+
+#: ../../prerequisites.rst:9 74b8514ec57246c09461042d0dd42170
+msgid ""
+"The plugin reads a kubeconfig file directly — by default "
+"``~/.kube/config``, though you can point it at any file in the profile "
+"settings. It does not create or modify this file; it must already have at"
+" least one context pointing at a cluster you can reach."
+msgstr ""
+"이 플러그인은 kubeconfig 파일을 직접 읽습니다 — 기본값은 ``~/.kube/config``\\ 이며, 프로필 설정에서 다른 "
+"파일을 지정할 수도 있습니다. 플러그인이 이 파일을 생성하거나 수정하지는 않으므로, 접속 가능한 클러스터를 가리키는 컨텍스트가 "
+"최소 하나는 이미 들어있어야 합니다."
+
+#: ../../prerequisites.rst:14 0ca38e2842f54b0d84473807a10f1562
+msgid ""
+"If you can already run ``kubectl get pods`` successfully against your "
+"cluster, your kubeconfig is ready to use with this plugin as-is."
+msgstr ""
+"이미 클러스터에 대해 ``kubectl get pods``\\ 가 정상적으로 실행된다면, 그 kubeconfig는 수정 없이 이 "
+"플러그인에서 그대로 사용할 수 있습니다."
+
+#: ../../prerequisites.rst:18 39dde46aacf94ab1a1c5aefef3871902
+msgid "2. Credentials for your kubeconfig's auth method"
+msgstr "2. kubeconfig 인증 방식에 필요한 자격 증명"
+
+#: ../../prerequisites.rst:20 ac93f933dc4c4122a88683e0edc8c34d
+msgid ""
+"The plugin resolves credentials using the same logic ``kubectl`` itself "
+"uses, so whatever your kubeconfig already relies on continues to work "
+"unchanged:"
+msgstr ""
+"이 플러그인은 ``kubectl``\\ 이 사용하는 것과 동일한 방식으로 자격 증명을 처리하므로, 기존 kubeconfig가 "
+"의존하던 방식이 그대로 동작합니다:"
+
+#: ../../prerequisites.rst:24 435d21b875504f3e9bf867bb87b37693
+msgid "**Static token / client certificate** — nothing extra is needed."
+msgstr "**고정 토큰 / 클라이언트 인증서** — 별도로 필요한 작업이 없습니다."
+
+#: ../../prerequisites.rst:25 fb8b6cab9751441289befb02958844e7
+msgid ""
+"**``exec``-based auth plugins** (used by managed clusters such as Amazon "
+"EKS, GKE, or any setup using ``kubelogin``) — the referenced binary "
+"(``aws``, ``gke-gcloud-auth-plugin``, ``kubelogin``, ...) must be "
+"installed and available on ``PATH``, and **you must have an active, "
+"unexpired session with that provider at the moment you connect**. For "
+"example, an EKS kubeconfig's ``exec`` entry runs ``aws eks get-token`` "
+"under the hood — if your AWS CLI session has expired, that command fails,"
+" and so does the connection. This is inherent to how ``exec``-based auth "
+"works and applies equally to plain ``kubectl``; the plugin cannot work "
+"around it."
+msgstr ""
+"**``exec`` 기반 인증 플러그인** (Amazon EKS, GKE 같은 관리형 클러스터나 ``kubelogin``\\ 을 사용하는 "
+"환경) — 참조하는 바이너리(``aws``, ``gke-gcloud-auth-plugin``, ``kubelogin`` 등)가 "
+"설치되어 ``PATH``\\ 에 있어야 하고, **접속하는 시점에 해당 제공자에 대한 유효한(만료되지 않은) 세션이 있어야 "
+"합니다**. 예를 들어 EKS kubeconfig의 ``exec`` 항목은 내부적으로 ``aws eks get-token``\\ 을 "
+"실행하는데, AWS CLI 세션이 만료되어 있으면 이 명령이 실패하고 접속도 실패합니다. 이는 ``exec`` 기반 인증 방식 "
+"자체의 특성이며 일반 ``kubectl``\\ 에도 동일하게 적용되는 제약이라, 플러그인이 우회할 수 있는 부분이 아닙니다."
+
+#: ../../prerequisites.rst:38 168bb2474d1e4233a568665a7baccd8c
+msgid ""
+"Once a token has been obtained, it is cached in memory for its stated "
+"lifetime (an EKS token is normally valid for about 15 minutes), so the "
+"underlying ``aws``/``gke-gcloud-auth-plugin``/etc. command is **not** re-"
+"run on every action — only when no valid cached token exists yet, or the "
+"cached one has expired. Every new connection (opening a new tab) starts "
+"with its own cache, though, so it can trigger a fresh credential fetch "
+"even if another tab or the settings dialog already has one cached."
+msgstr ""
+"토큰을 한 번 받아오면 명시된 유효 기간 동안(EKS 토큰은 보통 약 15분) 메모리에 캐시되므로, 내부의 "
+"``aws``/``gke-gcloud-auth-plugin`` 등 명령이 매번 다시 실행되지는 **않습니다** — 유효한 캐시된 "
+"토큰이 아직 없거나 만료됐을 때만 다시 실행됩니다. 다만 새 접속(새 탭 열기)마다 자체 캐시로 시작하기 때문에, 다른 탭이나 "
+"설정 창에 이미 캐시된 토큰이 있어도 새로 자격 증명을 받아오는 경우가 있을 수 있습니다."
+
+#: ../../prerequisites.rst:46 160ca8c8d93a40a38a80b2f6848c0390
+msgid "Once both are in place, continue to :doc:`installation`."
+msgstr "두 가지가 모두 준비됐다면 :doc:`installation`\\ 으로 이동하세요."

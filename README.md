@@ -1,11 +1,14 @@
 # tabby-k8s-exec
 
+📖 **[Documentation](https://search5.github.io/tabby-k8s-exec/)** (English / 한국어)
+
 A [Tabby](https://tabby.sh) terminal plugin that opens an interactive shell into a Kubernetes pod/container — like `kubectl exec -it <pod> -- sh` — implemented natively via the official [`@kubernetes/client-node`](https://github.com/kubernetes-client/javascript) SDK. No `kubectl` binary is required at runtime.
 
 ## Features
 
 - **Native Kubernetes exec protocol** — connects directly to the cluster's exec WebSocket endpoint using `@kubernetes/client-node`, no `kubectl` process spawned.
 - **Cascading connection picker** — pick a kubeconfig context, then a namespace, then a pod, then a container, each populated live from the cluster (namespace/pod lists have a manual Refresh button; the context list is read from the local kubeconfig file).
+- **Clear pre-connect diagnostics** — if the selected pod isn't actually running, the plugin checks its phase before attempting to connect and shows exactly why, instead of a raw transport error.
 - **Shell fallback** — optionally try `/bin/bash` first and fall back to `/bin/sh` automatically if the container doesn't have bash.
 - **Multi-container pod support** — the container picker is derived from the selected pod's actual `containers`/`initContainers`.
 
@@ -41,6 +44,8 @@ Create a new connection, choose type **Kubernetes Exec**, and fill in:
 | Pod | Pod to exec into (Refresh to list pods in the selected namespace) |
 | Container | Container within the pod (auto-selected if the pod has only one) |
 | Command | Shell/command to run, default `/bin/sh` |
+
+Selecting a context does not automatically load its namespaces — click the Namespace field's Refresh button explicitly to avoid firing off a cluster API call every time you're just browsing contexts.
 
 ## Known limitations
 

@@ -5,3 +5,5 @@ tsconfig.paths.json
 .claude/
 *.log
 ._*
+docs/_build/
+docs/locale/**/*.mo

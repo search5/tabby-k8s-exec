@@ -1,0 +1,19 @@
+{#
+  Override for sphinx_book_theme's components/author.html.
+
+  The theme's stock template renders {{ translate('By') }} {{ author }},
+  and Sphinx's bundled Korean message catalog translates the standalone
+  string "By" as "으로" (a postposition meaning roughly "by means of"),
+  which reads as a mistranslation when placed in front of a person's name
+  in the footer ("으로 Ji-Ho Lee" does not read naturally as "By Ji-Ho
+  Lee" does in English).
+
+  This override sidesteps that catalog entry entirely and picks the
+  correct phrasing directly from Sphinx's `language` config value:
+  "작성자: <author>" for Korean builds, "By <author>" otherwise.
+#}
+{% if author %}
+<p class="component-author">
+{% if language == 'ko' %}작성자: {{ author }}{% else %}By {{ author }}{% endif %}
+</p>
+{% endif %}
