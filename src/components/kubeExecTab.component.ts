@@ -1,4 +1,5 @@
 import { Component, Injector } from '@angular/core'
+import { GetRecoveryTokenOptions, RecoveryToken } from 'tabby-core'
 import { BaseTerminalTabComponent, ConnectableTerminalTabComponent } from 'tabby-terminal'
 import { KubeExecProfile } from '../api'
 import { KubeExecSession } from '../kubeExec.session'
@@ -19,6 +20,20 @@ export class KubeExecTabComponent extends ConnectableTerminalTabComponent<KubeEx
     ngOnInit (): void {
         this.logger = this.log.create('k8s-exec-tab')
         super.ngOnInit()
+    }
+
+    // saveTabs() JSON.stringifies every open tab's token in one batch with no per-tab try/catch,
+    // so one bad token (circular ref, non-serializable value) would silently kill recovery for
+    // every other open tab too. Isolate that failure to just this tab instead.
+    async getRecoveryToken (options?: GetRecoveryTokenOptions): Promise<RecoveryToken | null> {
+        try {
+            const token = await super.getRecoveryToken(options)
+            JSON.stringify(token)
+            return token
+        } catch (e) {
+            this.logger.error('getRecoveryToken() failed:', e)
+            return null
+        }
     }
 
     async initializeSession (): Promise<void> {
