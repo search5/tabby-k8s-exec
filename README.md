@@ -1,5 +1,7 @@
 # tabby-k8s-exec
 
+🌐 **English** | [한국어](README.ko.md)
+
 📖 **[Documentation](https://search5.github.io/tabby-k8s-exec/)** (English / 한국어)
 
 A [Tabby](https://tabby.sh) terminal plugin that opens an interactive shell into a Kubernetes pod/container — like `kubectl exec -it <pod> -- sh` — implemented natively via the official [`@kubernetes/client-node`](https://github.com/kubernetes-client/javascript) SDK. No `kubectl` binary is required at runtime.
