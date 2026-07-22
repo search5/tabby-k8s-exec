@@ -1,6 +1,6 @@
 {
   "name": "tabby-k8s-exec",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Kubernetes pod exec plugin for Tabby — no kubectl binary required at runtime",
   "author": "Ji-Ho, Lee <search5@gmail.com>",
   "license": "MIT",
