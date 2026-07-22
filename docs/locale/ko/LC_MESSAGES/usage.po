@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabby-k8s-exec 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"POT-Creation-Date: 2026-07-23 07:28+0900\n"
 "PO-Revision-Date: 2026-07-22 23:58+0900\n"
 "Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
 "Language: ko\n"
@@ -103,24 +103,29 @@ msgstr ""
 msgid "Command"
 msgstr "명령어"
 
-#: ../../usage.rst:33 faf5811f03334d8b8abe8b4c7fc12184
-msgid "Shell or command to run on connect. Defaults to ``/bin/sh``."
-msgstr "접속 시 실행할 셸 또는 명령어입니다. 기본값은 ``/bin/sh``\\ 입니다."
+#: ../../usage.rst:33 d37aa57f2c2d4aee9d85d8917634700d
+msgid ""
+"Shell or command to run on connect. Defaults to ``/bin/sh``. Supports "
+"shell-style quoting, e.g. ``/bin/sh -c \"echo hello world\"`` runs as "
+"three arguments rather than exploding on every space."
+msgstr ""
+"연결 시 실행할 셸/명령어. 기본값은 ``/bin/sh``\\ 입니다. 셸 스타일 따옴표를 지원합니다 — 예를 들어 "
+"``/bin/sh -c \"echo hello world\"``\\ 는 공백마다 쪼개지지 않고 정확히 세 개의 인자로 실행됩니다."
 
-#: ../../usage.rst:34 3625efc7e8254f49ac08059f23b0a1aa
+#: ../../usage.rst:36 3625efc7e8254f49ac08059f23b0a1aa
 msgid "Shell fallback"
 msgstr "셸 대체(fallback)"
 
-#: ../../usage.rst:35 893ff092e4974dd89ec3df2a71ca6ae5
+#: ../../usage.rst:37 893ff092e4974dd89ec3df2a71ca6ae5
 msgid ""
 "Only shown when Command is ``/bin/bash`` (or ``bash``). If enabled (the "
 "default), the plugin retries with ``/bin/sh`` automatically if bash isn't"
 " available in the container."
 msgstr ""
-"명령어가 ``/bin/bash``\\ (또는 ``bash``)일 때만 표시됩니다. 활성화되어 있으면(기본값) 컨테이너에 bash가"
-" 없을 때 자동으로 ``/bin/sh``\\ 로 재시도합니다."
+"명령어가 ``/bin/bash``\\ (또는 ``bash``)일 때만 표시됩니다. 활성화되어 있으면(기본값) 컨테이너에 bash가 "
+"없을 때 자동으로 ``/bin/sh``\\ 로 재시도합니다."
 
-#: ../../usage.rst:41 c2af135bc8b24495b6e6ad7649b87bce
+#: ../../usage.rst:43 c2af135bc8b24495b6e6ad7649b87bce
 msgid ""
 "Selecting a context does **not** automatically load its namespaces — "
 "click the **Refresh** button next to Namespace explicitly. This avoids "
@@ -129,79 +134,96 @@ msgstr ""
 "컨텍스트를 선택해도 네임스페이스가 자동으로 불러와지지 **않습니다** — 네임스페이스 옆의 **새로고침** 버튼을 직접 눌러야 "
 "합니다. 이는 단순히 컨텍스트를 둘러보기만 할 때마다 클러스터 API를 호출하는 것을 방지하기 위함입니다."
 
-#: ../../usage.rst:45 854fcf74b8724f71b3d21fcf462603c5
+#: ../../usage.rst:47 854fcf74b8724f71b3d21fcf462603c5
 msgid "Save the profile and connect."
 msgstr "프로필을 저장하고 접속합니다."
 
-#: ../../usage.rst:49 f82c64b645694f3f9362a98f5f8ee0b5
+#: ../../usage.rst:51 f82c64b645694f3f9362a98f5f8ee0b5
 msgid ""
 "If the selected pod isn't actually running (already exited, crashed, "
 "still pending, ...), the plugin detects this before attempting to connect"
 " and shows a clear message naming the pod's current phase, instead of a "
 "raw transport error. See :doc:`troubleshooting`."
 msgstr ""
-"선택한 파드가 실제로 실행 중이 아니라면(이미 종료됐거나, 크래시됐거나, 아직 대기 중이거나 등) 플러그인이 접속을 시도하기 전에"
-" 이를 감지해서, 원시 전송 계층 에러 대신 파드의 현재 상태(phase)를 명시한 명확한 메시지를 보여줍니다. "
+"선택한 파드가 실제로 실행 중이 아니라면(이미 종료됐거나, 크래시됐거나, 아직 대기 중이거나 등) 플러그인이 접속을 시도하기 전에 "
+"이를 감지해서, 원시 전송 계층 에러 대신 파드의 현재 상태(phase)를 명시한 명확한 메시지를 보여줍니다. "
 ":doc:`troubleshooting`\\ 을 참고하세요."
 
-#: ../../usage.rst:55 8346873885024e1b883b2bc1d9838bed
+#: ../../usage.rst:57 8346873885024e1b883b2bc1d9838bed
 msgid "What happens behind the scenes"
 msgstr "내부적으로 일어나는 일"
 
-#: ../../usage.rst:57 ffce8cb6330a4b12b81cc939f99309e7
+#: ../../usage.rst:59 ffce8cb6330a4b12b81cc939f99309e7
 msgid ""
 "**Kubeconfig load** — the selected kubeconfig file and context are "
 "parsed, and credentials are resolved using the same logic ``kubectl`` "
 "uses (static token, client certificate, or an ``exec``-based auth "
 "plugin)."
 msgstr ""
-"**Kubeconfig 로드** — 선택한 kubeconfig 파일과 컨텍스트를 파싱하고, ``kubectl``\\ 과 동일한 방식(고정"
-" 토큰, 클라이언트 인증서, 또는 ``exec`` 기반 인증 플러그인)으로 자격 증명을 처리합니다."
+"**Kubeconfig 로드** — 선택한 kubeconfig 파일과 컨텍스트를 파싱하고, ``kubectl``\\ 과 동일한 "
+"방식(고정 토큰, 클라이언트 인증서, 또는 ``exec`` 기반 인증 플러그인)으로 자격 증명을 처리합니다."
 
-#: ../../usage.rst:61 7fa96d8028654909807b51985b72b8f1
+#: ../../usage.rst:63 7fa96d8028654909807b51985b72b8f1
 msgid ""
 "**Pod status check** — the target pod's phase is read once via the "
 "Kubernetes API before connecting."
 msgstr "**파드 상태 확인** — 접속하기 전에 Kubernetes API를 통해 대상 파드의 상태(phase)를 한 번 확인합니다."
 
-#: ../../usage.rst:63 de7eb0ead38647bca5c80875a1457bcd
+#: ../../usage.rst:65 de7eb0ead38647bca5c80875a1457bcd
 msgid ""
 "**Exec** — an interactive session is opened directly against the "
 "cluster's exec WebSocket endpoint (the ``pods/exec`` subresource), "
 "running the configured command with a TTY attached."
 msgstr ""
-"**Exec** — 클러스터의 exec WebSocket 엔드포인트(``pods/exec`` 서브리소스)에 직접 대화형 세션을 열어, "
-"TTY가 연결된 상태로 설정된 명령어를 실행합니다."
+"**Exec** — 클러스터의 exec WebSocket 엔드포인트(``pods/exec`` 서브리소스)에 직접 대화형 세션을 "
+"열어, TTY가 연결된 상태로 설정된 명령어를 실행합니다."
 
-#: ../../usage.rst:66 1466e501a4d848a68a4d748a6b0c975a
+#: ../../usage.rst:68 1466e501a4d848a68a4d748a6b0c975a
 msgid ""
 "**I/O** — terminal input/output, resizing, and teardown are all driven "
 "over that same WebSocket — no local ``kubectl`` process is involved at "
 "any point."
 msgstr ""
-"**입출력** — 터미널 입출력, 크기 조절, 종료 처리가 모두 같은 WebSocket을 통해 이뤄지며, 로컬 ``kubectl`` "
-"프로세스는 어떤 단계에서도 관여하지 않습니다."
+"**입출력** — 터미널 입출력, 크기 조절, 종료 처리가 모두 같은 WebSocket을 통해 이뤄지며, 로컬 ``kubectl``"
+" 프로세스는 어떤 단계에서도 관여하지 않습니다."
 
-#: ../../usage.rst:70 2df8ae656d8c4ae29a8070a24aa52fa4
+#: ../../usage.rst:72 2df8ae656d8c4ae29a8070a24aa52fa4
 msgid ""
 "See :doc:`architecture` for how these stages map onto the plugin's source"
 " files."
 msgstr "이 단계들이 플러그인의 소스 파일과 어떻게 대응되는지는 :doc:`architecture`\\ 를 참고하세요."
 
-#: ../../usage.rst:74 e21f4d2ec10c408180bc40d2e7c54706
+#: ../../usage.rst:76 69b5dafabf0140e2b150f62604837c7f
+msgid "Tab recovery"
+msgstr "탭 복구"
+
+#: ../../usage.rst:78 252e28491ac04b7eb1c186ed5b3dde65
+msgid ""
+"If Tabby restarts (or you quit and reopen it), any kube-exec tabs that "
+"were open get reopened automatically and reconnect to the same pod, with "
+"the terminal scrollback restored. No manual reconnection is needed."
+msgstr ""
+"Tabby가 재시작되거나(또는 종료 후 다시 열어도) 열려있던 kube-exec 탭은 자동으로 다시 열리고 같은 파드에 "
+"재연결되며, 터미널 스크롤백도 복원됩니다. 수동으로 다시 연결할 필요가 없습니다."
+
+#: ../../usage.rst:83 e21f4d2ec10c408180bc40d2e7c54706
 msgid "Development workflow"
 msgstr "개발 워크플로우"
 
-#: ../../usage.rst:76 aa8cd51f57f34c33ba0bb95ea4b2001c
+#: ../../usage.rst:85 aa8cd51f57f34c33ba0bb95ea4b2001c
 msgid ""
 "If you are working on the plugin itself (see :doc:`installation`), you "
 "can iterate with:"
 msgstr "플러그인 자체를 개발 중이라면(:doc:`installation` 참고), 다음과 같이 반복 작업할 수 있습니다:"
 
-#: ../../usage.rst:84 71494062f7714c1e899b6ee52147fb4d
+#: ../../usage.rst:93 71494062f7714c1e899b6ee52147fb4d
 msgid ""
 "Open Tabby's developer console (**View → Toggle Developer Tools**) to see"
 " the plugin's log output while you work."
 msgstr ""
 "작업하는 동안 플러그인의 로그 출력을 보려면 Tabby의 개발자 콘솔(**보기(View) → 개발자 도구 켜기/끄기(Toggle "
 "Developer Tools)**)을 여세요."
+
+#~ msgid "Shell or command to run on connect. Defaults to ``/bin/sh``."
+#~ msgstr "접속 시 실행할 셸 또는 명령어입니다. 기본값은 ``/bin/sh``\\ 입니다."
+

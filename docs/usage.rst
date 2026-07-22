@@ -30,7 +30,9 @@ Creating a new Kubernetes Exec connection
        container; otherwise pick one from the pod's actual
        ``containers``/``initContainers``.
    * - Command
-     - Shell or command to run on connect. Defaults to ``/bin/sh``.
+     - Shell or command to run on connect. Defaults to ``/bin/sh``. Supports
+       shell-style quoting, e.g. ``/bin/sh -c "echo hello world"`` runs as
+       three arguments rather than exploding on every space.
    * - Shell fallback
      - Only shown when Command is ``/bin/bash`` (or ``bash``). If enabled
        (the default), the plugin retries with ``/bin/sh`` automatically if
@@ -69,6 +71,13 @@ What happens behind the scenes
 
 See :doc:`architecture` for how these stages map onto the plugin's source
 files.
+
+Tab recovery
+----------------
+
+If Tabby restarts (or you quit and reopen it), any kube-exec tabs that were
+open get reopened automatically and reconnect to the same pod, with the
+terminal scrollback restored. No manual reconnection is needed.
 
 Development workflow
 ------------------------

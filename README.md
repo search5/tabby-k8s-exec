@@ -11,6 +11,7 @@ A [Tabby](https://tabby.sh) terminal plugin that opens an interactive shell into
 - **Clear pre-connect diagnostics** — if the selected pod isn't actually running, the plugin checks its phase before attempting to connect and shows exactly why, instead of a raw transport error.
 - **Shell fallback** — optionally try `/bin/bash` first and fall back to `/bin/sh` automatically if the container doesn't have bash.
 - **Multi-container pod support** — the container picker is derived from the selected pod's actual `containers`/`initContainers`.
+- **Tab recovery** — if Tabby restarts, open kube-exec tabs reopen automatically and reconnect to the same pod, with the terminal scrollback restored.
 
 ## Prerequisites
 
@@ -50,7 +51,6 @@ Selecting a context does not automatically load its namespaces — click the Nam
 ## Known limitations
 
 - Exec sessions may be disconnected after roughly 5 minutes of idle time behind some proxies/load balancers (an upstream `@kubernetes/client-node` limitation, not implemented around in v1) — reconnect via Tabby's reconnect hotkey if this happens.
-- The `Command` field is split on whitespace only; shell-style quoting (`sh -c "a ; b"`) isn't fully preserved.
 - Only a single kubeconfig file is supported per profile (no `KUBECONFIG`-style multi-file merging).
 
 ## Development
