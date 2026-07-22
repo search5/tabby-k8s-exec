@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tabby-k8s-exec 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 23:58+0900\n"
+"POT-Creation-Date: 2026-07-23 07:25+0900\n"
 "PO-Revision-Date: 2026-07-22 23:58+0900\n"
 "Last-Translator: Ji-Ho Lee <search5@gmail.com>\n"
 "Language: ko\n"
@@ -27,42 +27,72 @@ msgstr "설치"
 msgid "Make sure you have completed the steps in :doc:`prerequisites` first."
 msgstr ":doc:`prerequisites`\\ 의 단계를 먼저 완료했는지 확인하세요."
 
-#: ../../installation.rst:8 d1d580214bfe42a9b755325462f11d78
+#: ../../installation.rst:6 04984621f6684201a75742758b88ea8b
 msgid ""
-"**tabby-k8s-exec** is not yet published to npm, so it does not appear in "
-"Tabby's built-in Plugin Manager search. For now, install it from source "
-"as described below."
+"**tabby-k8s-exec** can be installed in two ways: directly from within "
+"Tabby, or by cloning the source repository and building it yourself."
 msgstr ""
-"**tabby-k8s-exec**\\ 는 아직 npm에 배포되지 않아서 Tabby 내장 플러그인 매니저 검색에 나타나지 않습니다. "
-"지금은 아래 설명대로 소스에서 직접 설치하세요."
+"**tabby-k8s-exec**\\ 는 두 가지 방법으로 설치할 수 있습니다: Tabby 안에서 바로 설치하거나, 소스 저장소를 "
+"복제해서 직접 빌드하는 방법입니다."
 
-#: ../../installation.rst:13 1efb0f9d34f5474992bf65cf65915cd4
-msgid "Clone the Git repository and build from source"
-msgstr "Git 저장소를 복제하여 직접 설치"
+#: ../../installation.rst:10 525e1554dfb5448ab3eb5ae495ef65f2
+msgid "Method 1 — Install from the Tabby Plugin Manager"
+msgstr "방법 1 — Tabby 플러그인 매니저에서 설치"
 
-#: ../../installation.rst:15 e56301d218154fa89524baf4bcf2ce1f
+#: ../../installation.rst:12 f7fd53b6aaaf48beb6407bce94e48b5b
+msgid "This is the recommended method for most users."
+msgstr "대부분의 사용자에게 권장하는 방법입니다."
+
+#: ../../installation.rst:14 233096c6157942939c5e616f1a84c2c3
+msgid "Open Tabby and go to **Settings → Plugins**."
+msgstr "Tabby를 열고 **Settings → Plugins**\\ 로 이동합니다."
+
+#: ../../installation.rst:15 d260554f0fc949fcb1a4c4ca1bb9e9f8
+msgid "In the search box, search for ``k8s-exec``."
+msgstr "검색창에 ``k8s-exec``\\ 를 입력해서 검색합니다."
+
+#: ../../installation.rst:16 fca89b88385b4e0388b4c93613b35499
+msgid "Click **Install**, then restart Tabby when prompted."
+msgstr "**Install**\\ 을 클릭한 뒤, 안내가 뜨면 Tabby를 재시작합니다."
+
+#: ../../installation.rst:19 1efb0f9d34f5474992bf65cf65915cd4
+msgid "Method 2 — Clone the Git repository and build from source"
+msgstr "방법 2 — Git 저장소를 복제해서 직접 소스에서 빌드"
+
+#: ../../installation.rst:21 23a5c5e7da394e24a20902fac32a5948
+msgid ""
+"Use this method if you want to build from a specific commit, contribute "
+"to the plugin, or install it on a machine without access to the Tabby "
+"Plugin Manager."
+msgstr ""
+"특정 커밋 기준으로 빌드하거나, 플러그인 개발에 기여하거나, Tabby 플러그인 매니저에 접근할 수 없는 환경에 설치하려는 "
+"경우 이 방법을 사용하세요."
+
+#: ../../installation.rst:25 e56301d218154fa89524baf4bcf2ce1f
 msgid "**Requirements:** `Node.js <https://nodejs.org/>`_ 18 or later."
 msgstr "**요구 사항:** `Node.js <https://nodejs.org/>`_ 18 이상."
 
-#: ../../installation.rst:25 a4d364e25d424cb7987bec8debff9bb2
+#: ../../installation.rst:35 a4d364e25d424cb7987bec8debff9bb2
 msgid ""
 "``npm run install-plugin`` detects your operating system and copies the "
 "built files to the correct Tabby plugin directory automatically:"
-msgstr "``npm run install-plugin``\\ 은 운영체제를 자동으로 감지해서 빌드된 파일을 올바른 Tabby 플러그인 디렉터리로 복사합니다:"
+msgstr ""
+"``npm run install-plugin``\\ 은 운영체제를 자동으로 감지해서 빌드된 파일을 올바른 Tabby 플러그인 "
+"디렉터리로 복사합니다:"
 
-#: ../../installation.rst:31 e11220c6f379429887223afe2c7bb22d
+#: ../../installation.rst:41 e11220c6f379429887223afe2c7bb22d
 msgid "OS"
 msgstr "OS"
 
-#: ../../installation.rst:32 823a7418bab5491b8beda67580476d07
+#: ../../installation.rst:42 823a7418bab5491b8beda67580476d07
 msgid "Plugin directory"
 msgstr "플러그인 디렉터리"
 
-#: ../../installation.rst:33 914aaf72cee34c7587c149bf79c40757
+#: ../../installation.rst:43 914aaf72cee34c7587c149bf79c40757
 msgid "macOS"
 msgstr "macOS"
 
-#: ../../installation.rst:34 a8e6f96b5b9a4aa582317813a1e0debd
+#: ../../installation.rst:44 a8e6f96b5b9a4aa582317813a1e0debd
 msgid ""
 "``~/Library/Application Support/tabby/plugins/node_modules/tabby-k8s-"
 "exec/``"
@@ -70,23 +100,23 @@ msgstr ""
 "``~/Library/Application Support/tabby/plugins/node_modules/tabby-k8s-"
 "exec/``"
 
-#: ../../installation.rst:35 9f3d93a0d7ed41d2b8f2b4eec98415a6
+#: ../../installation.rst:45 9f3d93a0d7ed41d2b8f2b4eec98415a6
 msgid "Linux"
 msgstr "Linux"
 
-#: ../../installation.rst:36 9a8540ed0b0645d6890c249dc69ab439
+#: ../../installation.rst:46 9a8540ed0b0645d6890c249dc69ab439
 msgid "``~/.config/tabby/plugins/node_modules/tabby-k8s-exec/``"
 msgstr "``~/.config/tabby/plugins/node_modules/tabby-k8s-exec/``"
 
-#: ../../installation.rst:37 293bc8db1eff4da5bd4c7a79f6156eba
+#: ../../installation.rst:47 293bc8db1eff4da5bd4c7a79f6156eba
 msgid "Windows"
 msgstr "Windows"
 
-#: ../../installation.rst:38 6cb7cd3a956d4812a2e168b3db52fe16
+#: ../../installation.rst:48 6cb7cd3a956d4812a2e168b3db52fe16
 msgid "``%APPDATA%\\tabby\\plugins\\node_modules\\tabby-k8s-exec\\``"
 msgstr "``%APPDATA%\\tabby\\plugins\\node_modules\\tabby-k8s-exec\\``"
 
-#: ../../installation.rst:40 43d5d62a8b37492085b7ac1923d76ed7
+#: ../../installation.rst:50 43d5d62a8b37492085b7ac1923d76ed7
 msgid ""
 "Restart Tabby after installation. To confirm the plugin loaded, open "
 "**View → Toggle Developer Tools** and look for the following line in the "
@@ -95,22 +125,46 @@ msgstr ""
 "설치 후 Tabby를 재시작하세요. 플러그인이 로드됐는지 확인하려면 **보기(View) → 개발자 도구 켜기/끄기(Toggle "
 "Developer Tools)**\\ 를 열어서 콘솔에 다음 줄이 있는지 확인하세요:"
 
-#: ../../installation.rst:48 ce891159f49a42aa882ac771ef856394
+#: ../../installation.rst:58 ce891159f49a42aa882ac771ef856394
 msgid "If you don't see it, see :doc:`troubleshooting`."
 msgstr "이 줄이 보이지 않는다면 :doc:`troubleshooting`\\ 을 참고하세요."
 
-#: ../../installation.rst:51 528d37b864384d93ba135883fe73fc6a
+#: ../../installation.rst:61 528d37b864384d93ba135883fe73fc6a
 msgid "Updating"
 msgstr "업데이트"
 
-#: ../../installation.rst:53 92f2634a070b4078b17515db9170e2e2
-msgid "Keep the plugin up to date by pulling the latest changes and rebuilding:"
-msgstr "최신 변경 사항을 받아서 다시 빌드하면 플러그인을 최신 상태로 유지할 수 있습니다:"
+#: ../../installation.rst:63 92f2634a070b4078b17515db9170e2e2
+msgid ""
+"If you installed from source (Method 2), keep the plugin up to date by "
+"pulling the latest changes and rebuilding:"
+msgstr "방법 2(소스 설치)로 설치했다면, 최신 변경 사항을 받아서 다시 빌드하면 플러그인을 최신 상태로 유지할 수 있습니다:"
 
-#: ../../installation.rst:61 df121d8d7f6848e7897f5681db9251ef
+#: ../../installation.rst:72 df121d8d7f6848e7897f5681db9251ef
 msgid "Then restart Tabby."
 msgstr "그 다음 Tabby를 재시작하세요."
 
-#: ../../installation.rst:63 0d82ef2947b94c1c808f915e7c165efb
+#: ../../installation.rst:74 828b00d3548249839574e4f2e8ff123d
+msgid ""
+"If you installed via the Plugin Manager (Method 1), Tabby will surface "
+"available updates for ``k8s-exec`` in **Settings → Plugins** the same way"
+" it does for any other plugin."
+msgstr ""
+"플러그인 매니저(방법 1)로 설치했다면, 다른 플러그인과 마찬가지로 Tabby가 **Settings → Plugins**\\ 에서 "
+"``k8s-exec``\\ 의 업데이트 가능 여부를 자동으로 표시해 줍니다."
+
+#: ../../installation.rst:78 0d82ef2947b94c1c808f915e7c165efb
 msgid "Once installed, continue to :doc:`usage`."
 msgstr "설치가 끝났다면 :doc:`usage`\\ 로 이동하세요."
+
+#~ msgid ""
+#~ "**tabby-k8s-exec** is not yet "
+#~ "published to npm, so it does not"
+#~ " appear in Tabby's built-in Plugin"
+#~ " Manager search. For now, install it"
+#~ " from source as described below."
+#~ msgstr ""
+#~ "**tabby-k8s-exec**\\ 는 아직 npm에 "
+#~ "배포되지 않아서 Tabby 내장 플러그인 매니저 검색에 "
+#~ "나타나지 않습니다. 지금은 아래 설명대로 소스에서 직접 "
+#~ "설치하세요."
+

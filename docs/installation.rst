@@ -3,14 +3,24 @@ Installation
 
 Make sure you have completed the steps in :doc:`prerequisites` first.
 
-.. note::
+**tabby-k8s-exec** can be installed in two ways: directly from within Tabby,
+or by cloning the source repository and building it yourself.
 
-   **tabby-k8s-exec** is not yet published to npm, so it does not appear in
-   Tabby's built-in Plugin Manager search. For now, install it from source
-   as described below.
+Method 1 — Install from the Tabby Plugin Manager
+--------------------------------------------------
 
-Clone the Git repository and build from source
----------------------------------------------------
+This is the recommended method for most users.
+
+1. Open Tabby and go to **Settings → Plugins**.
+2. In the search box, search for ``k8s-exec``.
+3. Click **Install**, then restart Tabby when prompted.
+
+Method 2 — Clone the Git repository and build from source
+-------------------------------------------------------------
+
+Use this method if you want to build from a specific commit, contribute to
+the plugin, or install it on a machine without access to the Tabby Plugin
+Manager.
 
 **Requirements:** `Node.js <https://nodejs.org/>`_ 18 or later.
 
@@ -50,7 +60,8 @@ If you don't see it, see :doc:`troubleshooting`.
 Updating
 --------
 
-Keep the plugin up to date by pulling the latest changes and rebuilding:
+If you installed from source (Method 2), keep the plugin up to date by
+pulling the latest changes and rebuilding:
 
 .. code-block:: bash
 
@@ -59,5 +70,9 @@ Keep the plugin up to date by pulling the latest changes and rebuilding:
    npm run install-plugin
 
 Then restart Tabby.
+
+If you installed via the Plugin Manager (Method 1), Tabby will surface
+available updates for ``k8s-exec`` in **Settings → Plugins** the same way it
+does for any other plugin.
 
 Once installed, continue to :doc:`usage`.
