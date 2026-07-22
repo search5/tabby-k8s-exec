@@ -6,6 +6,7 @@ import { BaseSession } from 'tabby-terminal'
 import type { V1Status } from '@kubernetes/client-node'
 import { KubeExecProfile } from './api'
 import { createKubeConfig, getPodPhase } from './kubeConfigLoader'
+import { tokenizeShellCommand } from './shellTokenize'
 
 async function loadClientNode () {
     return import('@kubernetes/client-node')
@@ -91,7 +92,7 @@ export class KubeExecSession extends BaseSession {
 
         this.exec = new k8s.Exec(kc)
 
-        await this.runExec(this.tokenize(options.command))
+        await this.runExec(tokenizeShellCommand(options.command))
     }
 
     // The exec WebSocket upgrade fails with an opaque "Unexpected server response: 500" when
@@ -110,10 +111,6 @@ export class KubeExecSession extends BaseSession {
         if (phase && phase !== 'Running') {
             throw new Error(`Pod "${podName}" is not running (phase: ${phase}) — it may have already exited or failed. Check with "kubectl get pod".`)
         }
-    }
-
-    private tokenize (command: string): string[] {
-        return command.trim().split(/\s+/).filter(Boolean)
     }
 
     private isBashCommand (argv: string[]): boolean {

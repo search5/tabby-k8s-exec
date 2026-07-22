@@ -2,6 +2,7 @@ import { Component, Input, NgZone } from '@angular/core'
 import { ProfileSettingsComponent, LocaleService } from 'tabby-core'
 import { KubeExecProfile } from '../api'
 import { createCoreV1Api, listContexts, listNamespaces, listPods, PodSummary } from '../kubeConfigLoader'
+import { tokenizeShellCommand } from '../shellTokenize'
 
 // To add a language, create src/locale/<code>.json and register it here.
 // @ngx-translate/core is not exposed to plugins by Tabby, so LocaleService (which
@@ -162,7 +163,7 @@ export class KubeExecProfileSettingsComponent implements ProfileSettingsComponen
     }
 
     get isBashCommand (): boolean {
-        const argv = (this.profile.options.command || '').trim().split(/\s+/)
+        const argv = tokenizeShellCommand(this.profile.options.command || '')
         return argv[0] === '/bin/bash' || argv[0] === 'bash'
     }
 
