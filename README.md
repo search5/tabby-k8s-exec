@@ -21,7 +21,13 @@ A [Tabby](https://tabby.sh) terminal plugin that opens an interactive shell into
 
 ## Installation
 
-This plugin isn't published to npm yet — install it from source:
+### Option A — Tabby Plugin Manager (recommended)
+
+Search for `k8s-exec` in **Tabby Settings → Plugins** and click Install. Restart Tabby when prompted.
+
+### Option B — From source
+
+**Requirements:** [Node.js](https://nodejs.org/) 18 or later
 
 ```bash
 git clone https://github.com/search5/tabby-k8s-exec.git
